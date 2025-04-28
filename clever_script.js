@@ -1,0 +1,194 @@
+// Elements
+const modal = document.getElementById('demo-modal');
+const openModalBtn = document.getElementById('open-demo-modal');
+const heroDemoBtn = document.getElementById('hero-demo-btn');
+const closeModalBtn = document.querySelector('.close-button');
+const demoForm = document.getElementById('demo-form');
+const signInBtn = document.getElementById('sign-in-btn');
+const statusNotification = document.getElementById('status-notification');
+
+// Variables to track state
+let apiAvailable = false;
+let consentInitialized = false;
+
+// Helper function to show status notification
+function showStatus(message, type = 'success') {
+    statusNotification.textContent = message;
+    statusNotification.className = `status-notification ${type}`;
+    statusNotification.style.display = 'block';
+    
+    setTimeout(() => {
+        statusNotification.style.display = 'none';
+    }, 3000);
+}
+
+// Get UTM parameters from URL
+function getUTMParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        campaignName: params.get('utm_campaign') || 'direct_traffic',
+        campaignSource: params.get('utm_source') || 'direct',
+        campaignContent: params.get('utm_content') || 'none',
+        custom1: params.get('utm_term') || 'custom1',
+        custom2: params.get('utm_medium') || 'custom2',
+        custom3: params.get('utm_id') || 3
+    };
+}
+
+// Check if SalesforceInteractions is available
+function checkApi() {
+    if (typeof window.SalesforceInteractions === 'undefined') {
+        console.log('SalesforceInteractions API not available');
+        apiAvailable = false;
+        return false;
+    }
+    
+    if (typeof window.SalesforceInteractions.sendEvent !== 'function') {
+        console.log('SalesforceInteractions.sendEvent is not a function');
+        apiAvailable = false;
+        return false;
+    }
+    
+    console.log('SalesforceInteractions API is available');
+    apiAvailable = true;
+    return true;
+}
+
+// Initialize consent automatically
+function initializeConsent() {
+    if (!apiAvailable) return;
+    
+    window.SalesforceInteractions.init({ 
+        consents: [{ 
+            provider: "CampaignAttribution", 
+            purpose: "Tracking", 
+            status: "Opt In" 
+        }] 
+    }).then(res => { 
+        consentInitialized = true;
+        console.log('Consent initialized successfully');
+    }).catch(err => { 
+        console.error('Consent initialization error:', err);
+    });
+}
+
+// Send identity event
+function sendIdentity(firstName, lastName, email) {
+    if (!apiAvailable) return;
+    
+    window.SalesforceInteractions.sendEvent({ 
+        user: { 
+            attributes: { 
+                eventType: 'identity', 
+                firstName: firstName, 
+                lastName: lastName, 
+                email: email, 
+                isAnonymous: 0 
+            } 
+        } 
+    }).then(res => {
+        console.log('Identity event sent successfully');
+    }).catch(err => {
+        console.error('Identity event error:', err);
+    });
+}
+
+// Send campaign event with UTM parameters
+function sendCampaignEvent() {
+    if (!apiAvailable) return;
+    
+    const utmParams = getUTMParams();
+    
+    window.SalesforceInteractions.sendEvent({ 
+        interaction: { 
+            name: "Campaigns Events", 
+            eventType: "campaignsEvents", 
+            campaignName: utmParams.campaignName, 
+            campaignSource: utmParams.campaignSource, 
+            campaignContent: utmParams.campaignContent, 
+            custom1: utmParams.custom1, 
+            custom2: utmParams.custom2, 
+            custom3: utmParams.custom3 
+        } 
+    }).then(res => { 
+        console.log('Campaign event sent successfully');
+    }).catch(err => { 
+        console.error('Campaign event error:', err);
+    });
+}
+
+// Modal functions
+function openModal() {
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+// Event listeners
+if (openModalBtn) {
+    openModalBtn.addEventListener('click', openModal);
+}
+
+if (heroDemoBtn) {
+    heroDemoBtn.addEventListener('click', openModal);
+}
+
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+// Handle sign in click
+if (signInBtn) {
+    signInBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // For demo purposes, we'll just send a test identity event
+        sendIdentity('Demo', 'User', 'demo@clever.ai');
+        showStatus('Welcome back!');
+    });
+}
+
+// Handle form submission
+if (demoForm) {
+    demoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        
+        // Send identity event
+        sendIdentity(firstName, lastName, email);
+        
+        // Send campaign event with UTM parameters
+        sendCampaignEvent();
+        
+        // Show success message
+        showStatus('Demo request submitted successfully!');
+        closeModal();
+        demoForm.reset();
+    });
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    // Check API availability and initialize consent automatically
+    if (checkApi()) {
+        initializeConsent();
+    } else {
+        // Try again after a short delay
+        setTimeout(() => {
+            if (checkApi()) {
+                initializeConsent();
+            }
+        }, 1000);
+    }
+});
