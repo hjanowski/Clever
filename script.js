@@ -93,6 +93,28 @@ function sendIdentity(firstName, lastName, email) {
     });
 }
 
+// Send identity event with company information
+function sendIdentityWithCompany(firstName, lastName, company, email) {
+    if (!apiAvailable) return;
+    
+    window.SalesforceInteractions.sendEvent({ 
+        user: { 
+            attributes: { 
+                eventType: 'identity', 
+                firstName: firstName, 
+                lastName: lastName, 
+                company: company,
+                email: email, 
+                isAnonymous: 0 
+            } 
+        } 
+    }).then(res => {
+        console.log('Identity event with company info sent successfully');
+    }).catch(err => {
+        console.error('Identity event error:', err);
+    });
+}
+
 // Send campaign event with UTM parameters
 function sendCampaignEvent() {
     if (!apiAvailable) return;
