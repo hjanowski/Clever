@@ -163,10 +163,11 @@ if (demoForm) {
         
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
+        const company = document.getElementById('company').value;
         const email = document.getElementById('email').value;
         
-        // Send identity event
-        sendIdentity(firstName, lastName, email);
+        // Send identity event with company information
+        sendIdentityWithCompany(firstName, lastName, company, email);
         
         // Send campaign event with UTM parameters
         sendCampaignEvent();
