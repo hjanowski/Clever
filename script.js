@@ -29,9 +29,9 @@ function getUTMParams() {
         campaignName: params.get('utm_campaign') || 'direct_traffic',
         campaignSource: params.get('utm_source') || 'direct',
         campaignContent: params.get('utm_content') || 'none',
-        custom1: params.get('utm_term') || 'custom1',
-        custom2: params.get('utm_medium') || 'custom2',
-        custom3: params.get('utm_id') || 3
+        custom1: Date.now().toString(), // Using timestamp for custom1 as requested
+        custom2: '', // Will be populated with company value when available
+        custom3: 3
     };
 }
 
@@ -54,7 +54,7 @@ function checkApi() {
     return true;
 }
 
-// Initialize consent automatically
+// Initialize consent as specified in requirements
 function initializeConsent() {
     if (!apiAvailable) return;
     
@@ -66,9 +66,9 @@ function initializeConsent() {
         }] 
     }).then(res => { 
         consentInitialized = true;
-        console.log('Consent initialized successfully');
+        console.log('Initialization success:', res);
     }).catch(err => { 
-        console.error('Consent initialization error:', err);
+        console.error('Initialization error:', err);
     });
 }
 
@@ -87,7 +87,7 @@ function sendIdentity(firstName, lastName, email) {
             } 
         } 
     }).then(res => {
-        console.log('Identity event sent successfully');
+        console.log('Identity event sent successfully:', res);
     }).catch(err => {
         console.error('Identity event error:', err);
     });
@@ -109,17 +109,21 @@ function sendIdentityWithCompany(firstName, lastName, company, email) {
             } 
         } 
     }).then(res => {
-        console.log('Identity event with company info sent successfully');
+        console.log('Identity event with company info sent successfully:', res);
     }).catch(err => {
         console.error('Identity event error:', err);
     });
 }
 
 // Send campaign event with UTM parameters
-function sendCampaignEvent() {
+function sendCampaignEvent(companyValue = '') {
     if (!apiAvailable) return;
     
     const utmParams = getUTMParams();
+    // Set company value to custom2 if provided
+    if (companyValue) {
+        utmParams.custom2 = companyValue;
+    }
     
     window.SalesforceInteractions.sendEvent({ 
         interaction: { 
@@ -133,9 +137,9 @@ function sendCampaignEvent() {
             custom3: utmParams.custom3 
         } 
     }).then(res => { 
-        console.log('Campaign event sent successfully');
+        console.log('Event sent successfully:', res);
     }).catch(err => { 
-        console.error('Campaign event error:', err);
+        console.error('Event sending error:', err);
     });
 }
 
@@ -173,6 +177,7 @@ if (signInBtn) {
     signInBtn.addEventListener('click', (e) => {
         e.preventDefault();
         // For demo purposes, we'll just send a test identity event
+        // In a real implementation, these values would come from the login process
         sendIdentity('Demo', 'User', 'demo@clever.ai');
         showStatus('Welcome back!');
     });
@@ -191,8 +196,8 @@ if (demoForm) {
         // Send identity event with company information
         sendIdentityWithCompany(firstName, lastName, company, email);
         
-        // Send campaign event with UTM parameters
-        sendCampaignEvent();
+        // Send campaign event with UTM parameters and company value
+        sendCampaignEvent(company);
         
         // Show success message
         showStatus('Demo request submitted successfully!');
@@ -206,11 +211,15 @@ window.addEventListener('load', () => {
     // Check API availability and initialize consent automatically
     if (checkApi()) {
         initializeConsent();
+        // Send initial campaign event for page visit
+        sendCampaignEvent();
     } else {
         // Try again after a short delay
         setTimeout(() => {
             if (checkApi()) {
                 initializeConsent();
+                // Send initial campaign event for page visit
+                sendCampaignEvent();
             }
         }, 1000);
     }
