@@ -1,226 +1,789 @@
-// Elements
-const modal = document.getElementById('demo-modal');
-const openModalBtn = document.getElementById('open-demo-modal');
-const heroDemoBtn = document.getElementById('hero-demo-btn');
-const closeModalBtn = document.querySelector('.close-button');
-const demoForm = document.getElementById('demo-form');
-const signInBtn = document.getElementById('sign-in-btn');
-const statusNotification = document.getElementById('status-notification');
-
-// Variables to track state
-let apiAvailable = false;
-let consentInitialized = false;
-
-// Helper function to show status notification
-function showStatus(message, type = 'success') {
-    statusNotification.textContent = message;
-    statusNotification.className = `status-notification ${type}`;
-    statusNotification.style.display = 'block';
-    
-    setTimeout(() => {
-        statusNotification.style.display = 'none';
-    }, 3000);
+:root {
+    --primary-color: #6951ff;
+    --primary-hover: #5840e6;
+    --background: #6951ff;
+    --text-white: #ffffff;
+    --text-gray: rgba(255, 255, 255, 0.8);
 }
 
-// Get UTM parameters from URL
-function getUTMParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        campaignName: params.get('utm_campaign') || 'direct_traffic',
-        campaignSource: params.get('utm_source') || 'direct',
-        campaignContent: params.get('utm_content') || 'none',
-        custom1: Date.now().toString(), // Using timestamp for custom1 as requested
-        custom2: '', // Will be populated with company value when available
-        custom3: 3
-    };
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-// Check if SalesforceInteractions is available
-function checkApi() {
-    if (typeof window.SalesforceInteractions === 'undefined') {
-        console.log('SalesforceInteractions API not available');
-        apiAvailable = false;
-        return false;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--background);
+    color: var(--text-white);
+    min-height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 40px;
+    background: rgba(105, 81, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo svg {
+    width: 32px;
+    height: 32px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    color: var(--text-white);
+    background: transparent;
+}
+
+.btn-primary {
+    background: var(--text-white);
+    color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero {
+    text-align: center;
+    padding: 160px 20px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: var(--text-gray);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.demo-button {
+    font-size: 18px;
+    padding: 16px 32px;
+    background: var(--text-white);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.demo-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-preview {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    margin: 60px auto;
+    max-width: 1000px;
+    overflow: hidden;
+}
+
+.dashboard-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.dashboard-nav {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.dashboard-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dashboard-content {
+    padding: 30px;
+}
+
+.chat-bubble {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #6951ff, #8b75ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.ai-response {
+    background: #f1f5f9;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.ai-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #6951ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.chat-message {
+    color: #1e293b;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Transformation examples styles */
+.transformation-example {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.source-content, .result-content {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 15px;
+    height: 280px;
+    overflow: hidden;
+}
+
+.transform-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Column labels */
+.column-label {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.column-label:after {
+    content: "";
+    height: 1px;
+    background: #e2e8f0;
+    flex-grow: 1;
+}
+
+/* Google Doc styles */
+.doc-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.doc-preview {
+    background: white;
+    border-radius: 4px;
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+}
+
+.doc-line {
+    height: 12px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.doc-line.short {
+    width: 70%;
+}
+
+/* Infographic styles */
+.infographic {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.infographic-header {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.infographic-chart {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.bar-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 120px;
+}
+
+.bar {
+    width: 30px;
+    background: #6951ff;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.bar span {
+    position: absolute;
+    bottom: -25px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.infographic-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 18px;
+    color: #6951ff;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Slack UI styles */
+.slack-container {
+    display: flex;
+    height: calc(100% - 30px);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.slack-sidebar {
+    width: 40px;
+    background: #1a1d21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
+}
+
+.slack-workspace {
+    width: 26px;
+    height: 26px;
+    background: #4a154b;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.slack-channel {
+    width: 26px;
+    height: 26px;
+    background: #323538;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.slack-channel.active {
+    background: #4a154b;
+}
+
+.slack-main {
+    flex-grow: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.slack-header {
+    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.slack-messages {
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.slack-message {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.slack-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background-color: #4a154b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.slack-content {
+    flex-grow: 1;
+}
+
+/* Redacted text styles */
+.slack-text-redacted {
+    padding: 3px 0;
+}
+
+.redacted-line {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.redacted-line.short {
+    width: 60%;
+}
+
+.redacted-line.medium {
+    width: 80%;
+}
+
+/* Pie chart styles */
+.pie-chart-container {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pie-chart-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.pie-chart {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.pie-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #475569;
+}
+
+.color-box {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+/* Book styles */
+.book-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.book-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #1e293b;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+/* Book infographic styles */
+.book-infographic {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.infographic-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.theme-item {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.theme-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1e293b;
+    margin: 5px 0;
+}
+
+.theme-desc {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.key-quote {
+    font-style: italic;
+    text-align: center;
+    color: #6951ff;
+    font-weight: 500;
+    margin-top: auto;
+}
+
+.decorative-element {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.circle-top-left {
+    background: #ec4899;
+    top: 0;
+    left: 0;
+    transform: translate(-25%, -25%);
+}
+
+.circle-bottom-right {
+    background: #3b82f6;
+    bottom: 0;
+    right: 0;
+    transform: translate(25%, 25%);
+}
+
+/* Demo Form Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.modal-header {
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    color: #1e293b;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.form-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.form-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-submit:hover {
+    background: var(--primary-hover);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+/* Status feedback */
+.status-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    color: #1e293b;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 2000;
+}
+
+.status-notification.success {
+    border-left: 4px solid #22c55e;
+}
+
+.status-notification.error {
+    border-left: 4px solid #ef4444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
     }
     
-    if (typeof window.SalesforceInteractions.sendEvent !== 'function') {
-        console.log('SalesforceInteractions.sendEvent is not a function');
-        apiAvailable = false;
-        return false;
+    .hero p {
+        font-size: 16px;
     }
     
-    console.log('SalesforceInteractions API is available');
-    apiAvailable = true;
-    return true;
-}
-
-// Initialize consent as specified in requirements
-function initializeConsent() {
-    if (!apiAvailable) return;
-    
-    window.SalesforceInteractions.init({ 
-        consents: [{ 
-            provider: "CampaignAttribution", 
-            purpose: "Tracking", 
-            status: "Opt In" 
-        }] 
-    }).then(res => { 
-        consentInitialized = true;
-        console.log('Initialization success:', res);
-    }).catch(err => { 
-        console.error('Initialization error:', err);
-    });
-}
-
-// Send identity event
-function sendIdentity(firstName, lastName, email) {
-    if (!apiAvailable) return;
-    
-    window.SalesforceInteractions.sendEvent({ 
-        user: { 
-            attributes: { 
-                eventType: 'identity', 
-                firstName: firstName, 
-                lastName: lastName, 
-                email: email, 
-                isAnonymous: 0 
-            } 
-        } 
-    }).then(res => {
-        console.log('Identity event sent successfully:', res);
-    }).catch(err => {
-        console.error('Identity event error:', err);
-    });
-}
-
-// Send identity event with company information
-function sendIdentityWithCompany(firstName, lastName, company, email) {
-    if (!apiAvailable) return;
-    
-    window.SalesforceInteractions.sendEvent({ 
-        user: { 
-            attributes: { 
-                eventType: 'identity', 
-                firstName: firstName, 
-                lastName: lastName, 
-                company: company,
-                email: email, 
-                isAnonymous: 0 
-            } 
-        } 
-    }).then(res => {
-        console.log('Identity event with company info sent successfully:', res);
-    }).catch(err => {
-        console.error('Identity event error:', err);
-    });
-}
-
-// Send campaign event with UTM parameters
-function sendCampaignEvent(companyValue = '') {
-    if (!apiAvailable) return;
-    
-    const utmParams = getUTMParams();
-    // Set company value to custom2 if provided
-    if (companyValue) {
-        utmParams.custom2 = companyValue;
+    .nav-links {
+        display: none;
     }
     
-    window.SalesforceInteractions.sendEvent({ 
-        interaction: { 
-            name: "Campaigns Events", 
-            eventType: "campaignsEvents", 
-            campaignName: utmParams.campaignName, 
-            campaignSource: utmParams.campaignSource, 
-            campaignContent: utmParams.campaignContent, 
-            custom1: utmParams.custom1, 
-            custom2: utmParams.custom2, 
-            custom3: utmParams.custom3 
-        } 
-    }).then(res => { 
-        console.log('Event sent successfully:', res);
-    }).catch(err => { 
-        console.error('Event sending error:', err);
-    });
-}
-
-// Modal functions
-function openModal() {
-    modal.style.display = 'flex';
-}
-
-function closeModal() {
-    modal.style.display = 'none';
-}
-
-// Event listeners
-if (openModalBtn) {
-    openModalBtn.addEventListener('click', openModal);
-}
-
-if (heroDemoBtn) {
-    heroDemoBtn.addEventListener('click', openModal);
-}
-
-if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', closeModal);
-}
-
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModal();
+    .transformation-example {
+        flex-direction: column;
     }
-});
-
-// Handle sign in click
-if (signInBtn) {
-    signInBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // For demo purposes, we'll just send a test identity event
-        // In a real implementation, these values would come from the login process
-        sendIdentity('Demo', 'User', 'demo@clever.ai');
-        showStatus('Welcome back!');
-    });
-}
-
-// Handle form submission
-if (demoForm) {
-    demoForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const company = document.getElementById('company').value;
-        const email = document.getElementById('email').value;
-        
-        // Send identity event with company information
-        sendIdentityWithCompany(firstName, lastName, company, email);
-        
-        // Send campaign event with UTM parameters and company value
-        sendCampaignEvent(company);
-        
-        // Show success message
-        showStatus('Demo request submitted successfully!');
-        closeModal();
-        demoForm.reset();
-    });
-}
-
-// Initialize on page load
-window.addEventListener('load', () => {
-    // Check API availability and initialize consent automatically
-    if (checkApi()) {
-        initializeConsent();
-        // Send initial campaign event for page visit
-        sendCampaignEvent();
-    } else {
-        // Try again after a short delay
-        setTimeout(() => {
-            if (checkApi()) {
-                initializeConsent();
-                // Send initial campaign event for page visit
-                sendCampaignEvent();
-            }
-        }, 1000);
+    
+    .source-content, .result-content {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
     }
-});
+    
+    .transform-arrow svg {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px;
+    }
+    
+    .nav-buttons .btn-secondary {
+        display: none;
+    }
+    
+    .theme-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pie-legend {
+        grid-template-columns: 1fr;
+    }
+}
