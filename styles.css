@@ -1,1117 +1,247 @@
-/* Continuation of styles.css */
-.infographic {
-    background: white;
-    border-radius: 8px;
-    padding: 15px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.infographic-header {
-    font-weight: 600;
-    font-size: 18px;
-    color: #1e293b;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.infographic-chart {
-    flex: 1;
-    margin-bottom: 15px;
-}
-
-.bar-chart {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    height: 120px;
-}
-
-.bar {
-    width: 30px;
-    background: #6951ff;
-    border-radius: 4px 4px 0 0;
-    position: relative;
-    min-height: 30px;
-    display: flex;
-    justify-content: center;
-    transition: height 1s ease-in-out;
-}
-
-.bar span {
-    position: absolute;
-    bottom: -25px;
-    font-size: 12px;
-    color: #64748b;
-}
-
-.infographic-stats {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-}
-
-.stat-value {
-    font-weight: 700;
-    font-size: 18px;
-    color: #6951ff;
-}
-
-.stat-label {
-    font-size: 12px;
-    color: #64748b;
-}
-
-/* Slack UI styles */
-.slack-container {
-    display: flex;
-    height: calc(100% - 30px);
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.slack-sidebar {
-    width: 40px;
-    background: #1a1d21;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-    gap: 15px;
-}
-
-.slack-workspace {
-    width: 26px;
-    height: 26px;
-    background: #4a154b;
-    color: white;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.slack-channel {
-    width: 26px;
-    height: 26px;
-    background: #323538;
-    color: white;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.slack-channel.active {
-    background: #4a154b;
-}
-
-.slack-main {
-    flex-grow: 1;
-    background: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.slack-header {
-    padding: 10px;
-    border-bottom: 1px solid #e2e8f0;
-    font-weight: 600;
-    color: #1e293b;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.slack-messages {
-    padding: 10px;
-    overflow-y: auto;
-    flex-grow: 1;
-}
-
-.slack-message {
-    display: flex;
-    margin-bottom: 15px;
-    gap: 10px;
-    align-items: flex-start;
-}
-
-.slack-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    background-color: #4a154b;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-    flex-shrink: 0;
-}
-
-.slack-content {
-    flex-grow: 1;
-}
-
-/* Redacted text styles */
-.slack-text-redacted {
-    padding: 3px 0;
-}
-
-.redacted-line {
-    height: 10px;
-    background: #e2e8f0;
-    border-radius: 4px;
-    margin-bottom: 4px;
-    width: 100%;
-}
-
-.redacted-line.short {
-    width: 60%;
-}
-
-.redacted-line.medium {
-    width: 80%;
-}
-
-/* Pie chart styles */
-.pie-chart-container {
-    background: white;
-    border-radius: 8px;
-    padding: 15px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.pie-chart-title {
-    font-weight: 600;
-    font-size: 18px;
-    color: #1e293b;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.pie-chart {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-.pie-chart circle {
-    transition: stroke-dashoffset 1s ease-in-out;
-}
-
-.pie-legend {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    color: #475569;
-}
-
-.color-box {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-}
-
-/* Book styles */
-.book-cover {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.book-title {
-    font-weight: 700;
-    font-size: 20px;
-    color: #1e293b;
-}
-
-.book-author {
-    font-size: 14px;
-    color: #64748b;
-    margin-bottom: 15px;
-}
-
-/* Book infographic styles */
-.book-infographic {
-    background: white;
-    border-radius: 8px;
-    padding: 15px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.infographic-title {
-    font-weight: 600;
-    font-size: 18px;
-    color: #1e293b;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.theme-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.theme-item {
-    background: #f8fafc;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.theme-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.theme-name {
-    font-weight: 600;
-    font-size: 14px;
-    color: #1e293b;
-    margin: 5px 0;
-}
-
-.key-quote {
-    font-style: italic;
-    text-align: center;
-    color: #6951ff;
-    font-weight: 500;
-    margin-top: auto;
-}
-
-.decorative-element {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    opacity: 0.15;
-    pointer-events: none;
-    animation: floating 8s ease-in-out infinite;
-}
-
-.circle-top-left {
-    background: #ec4899;
-    top: 0;
-    left: 0;
-    transform: translate(-25%, -25%);
-}
-
-.circle-bottom-right {
-    background: #3b82f6;
-    bottom: 0;
-    right: 0;
-    transform: translate(25%, 25%);
-    animation-delay: 2s;
-}
-
-/* Demo Form Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-}
-
-.modal-animate {
-    animation: modal-entrance 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.modal-header {
-    margin-bottom: 20px;
-}
-
-.modal-title {
-    color: #1e293b;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-label {
-    display: block;
-    color: #475569;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.form-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(105, 81, 255, 0.2);
-    outline: none;
-}
-
-.form-success .form-submit {
-    background: #22c55e;
-    animation: success-animation 0.5s ease;
-}
-
-.form-submit {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.form-submit:hover {
-    background: var(--primary-hover);
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #64748b;
-    cursor: pointer;
-}
-
-/* Status feedback */
-.status-notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: white;
-    color: #1e293b;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: none;
-    z-index: 2000;
-}
-
-.status-notification.success {
-    border-left: 4px solid #22c55e;
-}
-
-.status-notification.error {
-    border-left: 4px solid #ef4444;
-}
-
-/* Animation classes */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.slide-in-left-visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.slide-in-right-visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.slide-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-/* Arrow animation */
-.arrow-animate {
-    animation: arrow-pulse 0.6s ease-in-out;
-}
-
-@keyframes arrow-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-/* Result highlight */
-.result-highlight {
-    box-shadow: 0 0 20px rgba(105, 81, 255, 0.4);
-}
-
-/* Pulse effect */
-.pulse-effect {
-    animation: pulse 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* Floating animation */
-@keyframes floating {
-    0% { transform: translate(-25%, -25%); }
-    50% { transform: translate(-23%, -27%); }
-    100% { transform: translate(-25%, -25%); }
-}
-
-/* Modal animation */
-@keyframes modal-entrance {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Success animation */
-@keyframes success-animation {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-}
-
-/* Particles background */
-.particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.particle {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: float-around linear infinite;
-}
-
-@keyframes float-around {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(100px, 50px);
-    }
-    50% {
-        transform: translate(50px, 100px);
-    }
-    75% {
-        transform: translate(-50px, 50px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
-
-/* Typing effect */
-.cursor {
-    display: inline-block;
-    width: 3px;
-    height: 1em;
-    background-color: currentColor;
-    margin-left: 2px;
-    animation: blink 1s infinite;
-    vertical-align: text-bottom;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Notification bell */
-.notification-bell {
-    position: relative;
-    margin-right: 15px;
-    cursor: pointer;
-}
-
-.bell-icon {
-    position: relative;
-    color: white;
-}
-
-.notification-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff5757;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.notification-tooltip {
-    position: absolute;
-    top: 100%;
-    right: -10px;
-    width: 250px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-top: 10px;
-    z-index: 1000;
-    animation: tooltip-fade-in 0.2s ease-out;
-}
-
-@keyframes tooltip-fade-in {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-.notification-tooltip:before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    right: 15px;
-    width: 10px;
-    height: 10px;
-    background: white;
-    transform: rotate(45deg);
-}
-
-.notification-item {
-    padding: 8px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.notification-item:last-child {
-    border-bottom: none;
-}
-
-.notification-title {
-    font-weight: 500;
-    color: #333;
-    font-size: 14px;
-}
-
-.notification-time {
-    color: #888;
-    font-size: 12px;
-    margin-top: 3px;
-}
-
-/* Feature highlights */
-.feature-highlights {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin: 60px 0;
-}
-
-.highlight-item {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    backdrop-filter: blur(5px);
-    flex: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.highlight-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.highlight-icon {
-    font-size: 28px;
-    background: rgba(255, 255, 255, 0.2);
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-}
-
-.highlight-title {
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.highlight-description {
-    color: var(--text-gray);
-    font-size: 14px;
-}
-
-/* Enhanced demo button */
-.demo-button-enhanced {
-    position: relative;
-    overflow: hidden;
-}
-
-.button-shine {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at var(--x, 0) var(--y, 0),
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0) 50%
-    );
-    pointer-events: none;
-}
-
-/* Testimonial slider */
-.testimonial-slider {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 30px;
-    margin: 60px 0;
-    position: relative;
-    backdrop-filter: blur(5px);
-}
-
-.testimonial-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.testimonial-header h3 {
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.testimonial-controls {
-    display: flex;
-    gap: 10px;
-}
-
-.testimonial-prev,
-.testimonial-next {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.testimonial-prev:hover,
-.testimonial-next:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.testimonial-track {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-}
-
-.testimonial-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.testimonial-item.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.testimonial-quote {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.testimonial-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--primary-hover);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 20px;
-}
-
-.testimonial-name {
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.testimonial-position {
-    color: var(--text-gray);
-    font-size: 14px;
-}
-
-.testimonial-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.testimonial-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.testimonial-dot.active {
-    background: white;
-}
-
-/* Live chat button */
-.live-chat-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary-color);
-    border-radius: 30px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.live-chat-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.chat-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chat-label {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.bounce-in {
-    animation: bounce-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes bounce-in {
-    0% { transform: scale(0); opacity: 0; }
-    80% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Chat modal */
-.chat-modal {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 350px;
-    height: 450px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
-    display: flex;
-    flex-direction: column;
-    transform: scale(0.9);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.chat-modal-visible {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.chat-header {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chat-title {
-    font-weight: 600;
-    color: #333;
-}
-
-.chat-close {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #999;
-    cursor: pointer;
-}
-
-.chat-messages {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.chat-message {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    max-width: 80%;
-}
-
-.chat-message.bot {
-    align-self: flex-start;
-}
-
-.chat-message.user {
-    align-self: flex-end;
-    flex-direction: row-reverse;
-}
-
-.message-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-}
-
-.message-bubble {
-    background: #f0f2f5;
-    padding: 10px 15px;
-    border-radius: 18px;
-    color: #333;
-}
-
-.chat-message.user .message-bubble {
-    background: var(--primary-color);
-    color: white;
-}
-
-.chat-input-container {
-    padding: 15px;
-    border-top: 1px solid #eee;
-    display: flex;
-    gap: 10px;
-}
-
-.chat-input {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    outline: none;
-}
-
-.chat-send {
-    background: var(--primary-color);
-    color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-/* Typing indicator */
-.typing-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.typing-indicator span {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #999;
-    border-radius: 50%;
-    animation: typing-bounce 1.4s infinite ease-in-out both;
-}
-
-.typing-indicator span:nth-child(1) {
-    animation-delay: -0.32s;
-}
-
-.typing-indicator span:nth-child(2) {
-    animation-delay: -0.16s;
-}
-
-@keyframes typing-bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1); }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 32px;
-    }
+// Elements
+const modal = document.getElementById('demo-modal');
+const openModalBtn = document.getElementById('open-demo-modal');
+const heroDemoBtn = document.getElementById('hero-demo-btn');
+const closeModalBtn = document.querySelector('.close-button');
+const demoForm = document.getElementById('demo-form');
+const signInBtn = document.getElementById('sign-in-btn');
+const statusNotification = document.getElementById('status-notification');
+
+// Variables to track state
+let apiAvailable = false;
+let consentInitialized = false;
+
+// Helper function to show status notification
+function showStatus(message, type = 'success') {
+    statusNotification.textContent = message;
+    statusNotification.className = `status-notification ${type}`;
+    statusNotification.style.display = 'block';
     
-    .hero p {
-        font-size: 16px;
-    }
-    
-    .nav-links {
-        display: none;
-    }
-    
-    .transformation-example {
-        flex-direction: column;
-    }
-    
-    .source-content, .result-content {
-        width: 100%;
-        height: auto;
-        min-height: 200px;
-    }
-    
-    .transform-arrow svg {
-        transform: rotate(90deg);
-    }
-    
-    .feature-highlights {
-        flex-direction: column;
-    }
-    
-    .testimonial-slider {
-        padding: 20px;
-    }
-    
-    .chat-modal {
-        width: 90%;
-        height: 400px;
-        bottom: 70px;
-        right: 5%;
+    setTimeout(() => {
+        statusNotification.style.display = 'none';
+    }, 3000);
+}
+
+// Get UTM parameters from URL
+function getUTMParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        campaignName: params.get('utm_campaign') || 'direct_traffic',
+        campaignSource: params.get('utm_source') || 'direct',
+        campaignContent: params.get('utm_content') || 'none',
+        custom1: params.get('utm_term') || 'custom1',
+        custom2: params.get('utm_medium') || 'custom2',
+        custom3: params.get('utm_id') || 3
+    };
+}
+
+// Check if SalesforceInteractions is available
+function checkApi() {
+    try {
+        if (typeof window.SalesforceInteractions === 'undefined') {
+            console.log('SalesforceInteractions API not available');
+            apiAvailable = false;
+            return false;
+        }
+        
+        if (typeof window.SalesforceInteractions.sendEvent !== 'function') {
+            console.log('SalesforceInteractions.sendEvent is not a function');
+            apiAvailable = false;
+            return false;
+        }
+        
+        console.log('SalesforceInteractions API is available');
+        apiAvailable = true;
+        return true;
+    } catch (error) {
+        console.error('Error checking API:', error);
+        apiAvailable = false;
+        return false;
     }
 }
 
-@media (max-width: 480px) {
-    .header {
-        padding: 15px;
-    }
+// Initialize consent automatically
+function initializeConsent() {
+    if (!apiAvailable) return;
     
-    .nav-buttons .btn-secondary {
-        display: none;
-    }
-    
-    .theme-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .pie-legend {
-        grid-template-columns: 1fr;
+    try {
+        window.SalesforceInteractions.init({ 
+            consents: [{ 
+                provider: "CampaignAttribution", 
+                purpose: "Tracking", 
+                status: "Opt In" 
+            }] 
+        }).then(res => { 
+            consentInitialized = true;
+            console.log('Consent initialized successfully');
+        }).catch(err => { 
+            console.error('Consent initialization error:', err);
+        });
+    } catch (error) {
+        console.error('Error during consent initialization:', error);
     }
 }
+
+// Send identity event
+function sendIdentity(firstName, lastName, email) {
+    if (!apiAvailable) return;
+    
+    try {
+        window.SalesforceInteractions.sendEvent({ 
+            user: { 
+                attributes: { 
+                    eventType: 'identity', 
+                    firstName: firstName, 
+                    lastName: lastName, 
+                    email: email, 
+                    isAnonymous: 0 
+                } 
+            } 
+        }).then(res => {
+            console.log('Identity event sent successfully');
+        }).catch(err => {
+            console.error('Identity event error:', err);
+        });
+    } catch (error) {
+        console.error('Error sending identity event:', error);
+    }
+}
+
+// Send identity event with company information
+function sendIdentityWithCompany(firstName, lastName, company, email) {
+    if (!apiAvailable) return;
+    
+    try {
+        window.SalesforceInteractions.sendEvent({ 
+            user: { 
+                attributes: { 
+                    eventType: 'identity', 
+                    firstName: firstName, 
+                    lastName: lastName, 
+                    company: company,
+                    email: email, 
+                    isAnonymous: 0 
+                } 
+            } 
+        }).then(res => {
+            console.log('Identity event with company info sent successfully');
+        }).catch(err => {
+            console.error('Identity event error:', err);
+        });
+    } catch (error) {
+        console.error('Error sending identity with company event:', error);
+    }
+}
+
+// Send campaign event with UTM parameters
+function sendCampaignEvent(companyValue = '') {
+    if (!apiAvailable) return;
+    
+    try {
+        const utmParams = getUTMParams();
+        // Set company value to custom2 if provided
+        if (companyValue) {
+            utmParams.custom2 = companyValue;
+        }
+        
+        window.SalesforceInteractions.sendEvent({ 
+            interaction: { 
+                name: "Campaigns Events", 
+                eventType: "campaignsEvents", 
+                campaignName: utmParams.campaignName, 
+                campaignSource: utmParams.campaignSource, 
+                campaignContent: utmParams.campaignContent, 
+                custom1: utmParams.custom1, 
+                custom2: utmParams.custom2, 
+                custom3: utmParams.custom3 
+            } 
+        }).then(res => { 
+            console.log('Campaign event sent successfully');
+        }).catch(err => { 
+            console.error('Campaign event error:', err);
+        });
+    } catch (error) {
+        console.error('Error sending campaign event:', error);
+    }
+}
+
+// Modal functions
+function openModal() {
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeModal() {
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Event listeners
+if (openModalBtn) {
+    openModalBtn.addEventListener('click', openModal);
+}
+
+if (heroDemoBtn) {
+    heroDemoBtn.addEventListener('click', openModal);
+}
+
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+// Handle sign in click
+if (signInBtn) {
+    signInBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // For demo purposes, we'll just send a test identity event
+        sendIdentity('Demo', 'User', 'demo@clever.ai');
+        showStatus('Welcome back!');
+    });
+}
+
+// Handle form submission
+if (demoForm) {
+    demoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const company = document.getElementById('company').value;
+        const email = document.getElementById('email').value;
+        
+        // Send identity event with company information
+        sendIdentityWithCompany(firstName, lastName, company, email);
+        
+        // Send campaign event with UTM parameters and company value
+        sendCampaignEvent(company);
+        
+        // Show success message
+        showStatus('Demo request submitted successfully!');
+        closeModal();
+        demoForm.reset();
+    });
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    // Check API availability and initialize consent automatically
+    if (checkApi()) {
+        initializeConsent();
+    } else {
+        // Try again after a short delay
+        setTimeout(() => {
+            if (checkApi()) {
+                initializeConsent();
+            }
+        }, 1000);
+    }
+});
