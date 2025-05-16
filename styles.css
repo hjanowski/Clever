@@ -722,3 +722,20 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Override for logo color */
+.logo {
+    color: #FFEF00 !important; /* Yellow logo color */
+}
+
+.logo svg {
+    stroke: #FFEF00 !important; /* Yellow SVG stroke */
+}
+
+.dashboard-logo {
+    color: #FFEF00 !important; /* Yellow logo color in dashboard */
+}
+
+.dashboard-logo svg {
+    stroke: #FFEF00 !important; /* Yellow SVG stroke in dashboard */
+}
