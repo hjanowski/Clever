@@ -17,7 +17,72 @@
     .logo svg {
         stroke: #FFEF00 !important; /* Yellow SVG stroke */
     }
-</style>
+    
+    /* Ensure the founder cards display correctly */
+    .founders-section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 80px;
+    }
+    
+    .founder-card {
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .founder-image {
+        height: 120px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .founder-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .founder-info {
+        padding: 15px;
+    }
+    
+    .founder-name {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: #FFEF00;
+    }
+    
+    .founder-title {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        color: var(--text-gray);
+    }
+    
+    .founder-bio {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    
+    @media (max-width: 1024px) {
+        .founders-section {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .founders-section {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
 </head>
 <body>
     <div class="decorative-element circle-top-left"></div>
@@ -33,7 +98,16 @@
                     clever
                 </a>
             </div>
-            <nav class="nav-links">
+        </div>
+    </div>
+
+    <!-- Status Notification -->
+    <div id="status-notification" class="status-notification"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>    <nav class="nav-links">
                 <a href="index.html" class="nav-link">Product</a>
                 <div class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle">Solutions</a>
@@ -62,7 +136,6 @@
         </div>
         
         <div class="founders-section">
-            <!-- Founder 1 -->
             <div class="founder-card">
                 <div class="founder-image">
                     <img src="https://ca.slack-edge.com/E7T5PNK3P-WK0AY7PSQ-85e093fae62f-512" alt="Rami Segal" class="founder-photo">
@@ -70,11 +143,10 @@
                 <div class="founder-info">
                     <h2 class="founder-name">Rami Segal</h2>
                     <h3 class="founder-title">Co-Founder & CEO</h3>
-                    <p class="founder-bio">With over 15 years of experience in AI and machine learning, Rami leads Clever's vision and strategy. Prior to founding Clever, he served as Head of AI Research at TechVision, where he pioneered breakthrough algorithms in natural language understanding.</p>
+                    <p class="founder-bio">With over 15 years of experience in AI and machine learning, Rami leads Clever's vision and strategy. Prior to founding Clever, he served as Head of AI Research at TechVision.</p>
                 </div>
             </div>
             
-            <!-- Founder 2 -->
             <div class="founder-card">
                 <div class="founder-image">
                     <img src="https://ca.slack-edge.com/E7T5PNK3P-WJ4B1PX2N-9f0fba747e82-512" alt="Hadas Yaniv" class="founder-photo">
@@ -82,11 +154,10 @@
                 <div class="founder-info">
                     <h2 class="founder-name">Hadas Yaniv</h2>
                     <h3 class="founder-title">Co-Founder & CTO</h3>
-                    <p class="founder-bio">Hadas is the technical mastermind behind Clever's innovative visualization engine. Her background in computational linguistics and information design allows her to bridge the gap between complex data structures and intuitive visual representations.</p>
+                    <p class="founder-bio">Hadas is the technical mastermind behind Clever's innovative visualization engine. Her background in computational linguistics and information design allows her to bridge the gap between complex data and visuals.</p>
                 </div>
             </div>
             
-            <!-- Founder 3 -->
             <div class="founder-card">
                 <div class="founder-image">
                     <img src="https://ca.slack-edge.com/E7T5PNK3P-U02BERC5J5Q-6ecbb3e0c9bc-512" alt="Alon Haze" class="founder-photo">
@@ -94,11 +165,10 @@
                 <div class="founder-info">
                     <h2 class="founder-name">Alon Haze</h2>
                     <h3 class="founder-title">Co-Founder & CPO</h3>
-                    <p class="founder-bio">As Chief Product Officer, Alon shapes how users experience Clever's technology across platforms. His background in cognitive psychology and human-computer interaction gives him unique insight into how people process visual information.</p>
+                    <p class="founder-bio">As Chief Product Officer, Alon shapes how users experience Clever's technology. His background in cognitive psychology and HCI gives him unique insight into visual information processing.</p>
                 </div>
             </div>
             
-            <!-- Founder 4 -->
             <div class="founder-card">
                 <div class="founder-image">
                     <img src="https://ca.slack-edge.com/E7T5PNK3P-U069W2B2AAW-ef436e9c1f8e-512" alt="Noa Ziglin" class="founder-photo">
@@ -106,11 +176,10 @@
                 <div class="founder-info">
                     <h2 class="founder-name">Noa Ziglin</h2>
                     <h3 class="founder-title">Co-Founder & COO</h3>
-                    <p class="founder-bio">Noa brings strategic business acumen to Clever's operations and growth initiatives. With a background in enterprise SaaS and organizational learning, she understands how visualization technology can transform corporate knowledge management.</p>
+                    <p class="founder-bio">Noa brings strategic business acumen to Clever's operations. With a background in enterprise SaaS and organizational learning, she understands how visualization can transform knowledge management.</p>
                 </div>
             </div>
             
-            <!-- New Team Member 1 -->
             <div class="founder-card">
                 <div class="founder-image">
                     <img src="https://ca.slack-edge.com/E7T5PNK3P-WJ4A52T99-c80c91adc2c6-512" alt="Mario Cruz" class="founder-photo">
@@ -118,11 +187,10 @@
                 <div class="founder-info">
                     <h2 class="founder-name">Mario Cruz</h2>
                     <h3 class="founder-title">VP of Engineering</h3>
-                    <p class="founder-bio">Mario brings over a decade of experience building scalable cloud solutions. At Clever, he leads the engineering team responsible for platform reliability and performance. Previously, he led backend development at DataStream Technologies.</p>
+                    <p class="founder-bio">Mario brings over a decade of experience building scalable cloud solutions. At Clever, he leads the engineering team responsible for platform reliability and performance.</p>
                 </div>
             </div>
             
-            <!-- New Team Member 2 -->
             <div class="founder-card">
                 <div class="founder-image">
                     <img src="https://ca.slack-edge.com/E7T5PNK3P-WAYGYLPT9-1a1f066ad2fb-512" alt="Srinivas Chandrasekaran" class="founder-photo">
@@ -130,7 +198,7 @@
                 <div class="founder-info">
                     <h2 class="founder-name">Srinivas Chandrasekaran</h2>
                     <h3 class="founder-title">Head of AI Research</h3>
-                    <p class="founder-bio">Srinivas leads Clever's AI research initiatives, focusing on natural language processing and multimodal learning models. With a PhD in Computer Science from Stanford, he previously contributed to breakthrough projects at DeepMind.</p>
+                    <p class="founder-bio">Srinivas leads Clever's AI research initiatives, focusing on natural language processing and multimodal learning models. He previously contributed to breakthrough projects at DeepMind.</p>
                 </div>
             </div>
         </div>
@@ -223,15 +291,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Status Notification -->
-    <div id="status-notification" class="status-notification"></div>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-</body>
-</html>
-Improve
-Explain
+        
