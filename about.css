@@ -26,16 +26,17 @@
     color: var(--text-gray);
 }
 
-/* Founder cards styling */
+/* Updated Founder cards styling for 3 in a row */
 .founders-section {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 60px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     margin-bottom: 80px;
 }
 
 .founder-card {
     display: flex;
+    flex-direction: column;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     overflow: hidden;
@@ -49,7 +50,7 @@
 }
 
 .founder-image {
-    flex: 0 0 280px;
+    height: 180px;
     position: relative;
     overflow: hidden;
 }
@@ -67,27 +68,26 @@
 }
 
 .founder-info {
-    flex: 1;
-    padding: 30px;
+    padding: 20px;
 }
 
 .founder-name {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 5px;
     color: #FFEF00;
 }
 
 .founder-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--text-gray);
 }
 
 .founder-bio {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 /* Company mission section */
@@ -121,13 +121,8 @@
 
 /* Responsive styles */
 @media (max-width: 1024px) {
-    .founder-card {
-        flex-direction: column;
-    }
-    
-    .founder-image {
-        flex: 0 0 auto;
-        height: 300px;
+    .founders-section {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -145,11 +140,12 @@
     }
     
     .founders-section {
-        gap: 40px;
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
     
     .founder-name {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .founder-title {
@@ -183,11 +179,11 @@
     }
     
     .founder-info {
-        padding: 20px;
+        padding: 15px;
     }
     
     .founder-name {
-        font-size: 22px;
+        font-size: 18px;
     }
     
     .company-mission {
