@@ -1,4 +1,4 @@
-/* About page specific styles */
+/* About page specific styles with better image fitting */
 
 .about-main {
     padding: 140px 40px 80px;
@@ -26,7 +26,7 @@
     color: var(--text-gray);
 }
 
-/* Updated Founder cards styling with proper image display */
+/* Founder cards with properly fitting images */
 .founders-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -50,17 +50,20 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+/* Keep container modest size but improve image fit */
 .founder-image {
-    height: 200px; /* Balanced height for proper face display */
+    height: 200px;
     position: relative;
     overflow: hidden;
 }
 
+/* Key changes to image fitting and scaling */
 .founder-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 15%; /* Position to prioritize faces */
+    /* Adjust to focus higher on the image - more face, less body */
+    object-position: center 5%;
     transition: transform 0.5s ease;
 }
 
@@ -128,7 +131,7 @@
     }
     
     .founder-image {
-        height: 220px; /* Slightly larger on medium screens */
+        height: 220px;
     }
 }
 
@@ -151,7 +154,7 @@
     }
     
     .founder-image {
-        height: 250px; /* More space on single column layout */
+        height: 250px;
     }
     
     .founder-name {
@@ -186,10 +189,6 @@
     
     .about-intro {
         font-size: 16px;
-    }
-    
-    .founder-image {
-        height: 200px; /* Reduced for smallest screens */
     }
     
     .founder-info {
