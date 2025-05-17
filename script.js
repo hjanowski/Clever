@@ -6,6 +6,12 @@ const closeModalBtn = document.querySelector('.close-button');
 const demoForm = document.getElementById('demo-form');
 const signInBtn = document.getElementById('sign-in-btn');
 const statusNotification = document.getElementById('status-notification');
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+const dropdown = document.querySelector('.dropdown');
+const cleverSlidesLink = document.getElementById('clever-slides-link');
+const slidesModal = document.getElementById('slides-modal');
+const closeSlidesModal = document.getElementById('close-slides-modal');
+const learnMoreSlides = document.getElementById('learn-more-slides');
 
 // Variables to track state
 let apiAvailable = false;
@@ -200,6 +206,53 @@ if (demoForm) {
         demoForm.reset();
     });
 }
+
+// Toggle dropdown
+if (dropdownToggle) {
+    dropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+}
+
+// Open Clever Slides modal
+if (cleverSlidesLink) {
+    cleverSlidesLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        slidesModal.style.display = 'flex';
+        dropdown.classList.remove('active');
+    });
+}
+
+// Close Clever Slides modal
+if (closeSlidesModal) {
+    closeSlidesModal.addEventListener('click', () => {
+        slidesModal.style.display = 'none';
+    });
+}
+
+// Handle Learn More button
+if (learnMoreSlides) {
+    learnMoreSlides.addEventListener('click', () => {
+        // For demo purposes, just show a status notification
+        showStatus('You\'ll be redirected to Clever Slides details page');
+        slidesModal.style.display = 'none';
+    });
+}
+
+// Close slides modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === slidesModal) {
+        slidesModal.style.display = 'none';
+    }
+});
 
 // Initialize on page load
 window.addEventListener('load', () => {
