@@ -190,3 +190,63 @@
         padding: 25px 15px;
     }
 }
+/* Improved founder card styling for better image display */
+
+/* Increase the height of the image container */
+.founder-image {
+    height: 250px; /* Increased from 120px for better proportions */
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Optimize image positioning and display */
+.founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; /* Focus on the top center of images to prioritize faces */
+    transition: transform 0.5s ease;
+}
+
+/* Add some spacing in the info section for better visual appeal */
+.founder-info {
+    padding: 20px;
+}
+
+/* Ensure consistent styling for founder cards */
+.founder-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Make all cards the same height */
+}
+
+/* Optional: Add a subtle zoom effect on hover */
+.founder-card:hover .founder-photo {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .founder-image {
+        height: 220px; /* Slightly smaller on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .founder-image {
+        height: 300px; /* Larger on mobile for single column layout */
+    }
+}
+
+@media (max-width: 480px) {
+    .founder-image {
+        height: 250px; /* Adjust for smallest screens */
+    }
+}
