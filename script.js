@@ -1,6 +1,6 @@
 // Elements
 const modal = document.getElementById('demo-modal');
-const openModalBtn = document.getElementById('open-demo-btn');
+const openModalBtn = document.getElementById('open-demo-modal');
 const heroDemoBtn = document.getElementById('hero-demo-btn');
 const closeModalBtn = document.querySelector('.close-button');
 const demoForm = document.getElementById('demo-form');
@@ -12,7 +12,30 @@ const cleverSlidesLink = document.getElementById('clever-slides-link');
 const slidesModal = document.getElementById('slides-modal');
 const closeSlidesModal = document.getElementById('close-slides-modal');
 const learnMoreSlides = document.getElementById('learn-more-slides');
-const aboutLink = document.querySelector('a[href="about.html"]');
+
+// IMPORTANT FIX: Get reference to the About link only after the DOM has loaded
+// This ensures the link is properly found in the DOM before attaching event listeners
+let aboutLink = null;
+document.addEventListener('DOMContentLoaded', () => {
+    aboutLink = document.querySelector('a[href="about.html"]');
+    
+    // Add the event listener here to ensure the element exists
+    if (aboutLink) {
+        // Properly attach click event with explicit return true to ensure navigation works
+        aboutLink.onclick = function() {
+            console.log('About link clicked');
+            // Track analytics without preventing default
+            if (apiAvailable) {
+                sendNavigationEvent('About Page');
+            }
+            // Explicitly return true to allow default link behavior
+            return true;
+        };
+    }
+    
+    // The active class setting moved here to avoid conflicts
+    updateActiveNavLinks();
+});
 
 // Variables to track state
 let apiAvailable = false;
@@ -295,16 +318,8 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Handle About link click - MODIFIED: Just track analytics, don't prevent default behavior
-if (aboutLink) {
-    aboutLink.addEventListener('click', () => {
-        // Only send analytics, no preventDefault() to allow normal navigation
-        sendNavigationEvent('About Page');
-    });
-}
-
 // Add active class to current navigation item
-document.addEventListener('DOMContentLoaded', () => {
+function updateActiveNavLinks() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -312,12 +327,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const href = link.getAttribute('href') || '';
         if (href === currentPage || (currentPage === 'index.html' && href === '')) {
             link.classList.add('active');
+        } else {
+            // Ensure other links don't have active class
+            link.classList.remove('active');
         }
     });
-});
+}
 
 // Initialize on page load
 window.addEventListener('load', () => {
+    // Log the base URL for debugging
+    console.log('Current pathname:', window.location.pathname);
+    
     // Check API availability and initialize consent automatically
     if (checkApi()) {
         initializeConsent();
@@ -328,5 +349,14 @@ window.addEventListener('load', () => {
                 initializeConsent();
             }
         }, 1000);
+    }
+    
+    // Debug: check if about link is present and configured correctly
+    const debugAboutLink = document.querySelector('a[href="about.html"]');
+    if (debugAboutLink) {
+        console.log('About link found:', debugAboutLink);
+        console.log('href attribute:', debugAboutLink.getAttribute('href'));
+    } else {
+        console.log('About link not found in DOM');
     }
 });
