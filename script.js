@@ -207,38 +207,50 @@ if (demoForm) {
     });
 }
 
-// Dropdown toggle functionality
+// Dropdown toggle functionality - FIXED VERSION
 if (dropdownToggle) {
-    // Toggle dropdown on click
+    // Toggle dropdown on click instead of hover
     dropdownToggle.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation(); // Prevent event from bubbling up
         dropdown.classList.toggle('active');
     });
     
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside - but make sure it's not clicking on a dropdown item
     document.addEventListener('click', (e) => {
         if (!dropdown.contains(e.target)) {
             dropdown.classList.remove('active');
         }
     });
     
-    // Open dropdown on hover (optional, but common for navigation)
-    dropdown.addEventListener('mouseenter', () => {
-        dropdown.classList.add('active');
-    });
-    
-    // Close dropdown when mouse leaves
-    dropdown.addEventListener('mouseleave', () => {
-        dropdown.classList.remove('active');
+    // Handle clicks on dropdown items
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // If it's not the Clever Slides link that has its own handler
+            if (item.id !== 'clever-slides-link') {
+                e.preventDefault();
+                
+                // Keep dropdown open for a short time to show the click registered
+                setTimeout(() => {
+                    dropdown.classList.remove('active');
+                }, 200);
+            }
+        });
     });
 }
 
-// Open Clever Slides modal
+// Specifically for the Clever Slides link
 if (cleverSlidesLink) {
     cleverSlidesLink.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation(); // Prevent event from bubbling up
         slidesModal.style.display = 'flex';
-        dropdown.classList.remove('active');
+        
+        // Close the dropdown after a small delay to allow the click to register visually
+        setTimeout(() => {
+            dropdown.classList.remove('active');
+        }, 100);
     });
 }
 
