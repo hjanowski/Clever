@@ -1,0 +1,196 @@
+/* About page specific styles */
+
+.about-main {
+    padding: 140px 40px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text-white);
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.about-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-intro {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+/* Founder cards styling */
+.founders-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.founder-card {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.founder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.founder-image {
+    flex: 0 0 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.founder-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.founder-card:hover .founder-photo {
+    transform: scale(1.05);
+}
+
+.founder-info {
+    flex: 1;
+    padding: 30px;
+}
+
+.founder-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #FFEF00;
+}
+
+.founder-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--text-gray);
+}
+
+.founder-bio {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Company mission section */
+.company-mission {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.company-mission h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #FFEF00;
+}
+
+.company-mission p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Active navigation link */
+.nav-link.active {
+    color: #FFEF00;
+    font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .founder-card {
+        flex-direction: column;
+    }
+    
+    .founder-image {
+        flex: 0 0 auto;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-main {
+        padding: 120px 20px 60px;
+    }
+    
+    .about-hero h1 {
+        font-size: 36px;
+    }
+    
+    .about-intro {
+        font-size: 18px;
+    }
+    
+    .founders-section {
+        gap: 40px;
+    }
+    
+    .founder-name {
+        font-size: 24px;
+    }
+    
+    .founder-title {
+        font-size: 16px;
+    }
+    
+    .company-mission {
+        padding: 30px 20px;
+    }
+    
+    .company-mission h2 {
+        font-size: 28px;
+    }
+    
+    .company-mission p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-main {
+        padding: 100px 15px 40px;
+    }
+    
+    .about-hero h1 {
+        font-size: 32px;
+    }
+    
+    .about-intro {
+        font-size: 16px;
+    }
+    
+    .founder-info {
+        padding: 20px;
+    }
+    
+    .founder-name {
+        font-size: 22px;
+    }
+    
+    .company-mission {
+        padding: 25px 15px;
+    }
+}
