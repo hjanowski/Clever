@@ -30,7 +30,7 @@
 .founders-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 25px;
     margin-bottom: 80px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .founder-image {
-    height: 180px;
+    height: 120px; /* Reduced by 33% from 180px */
     position: relative;
     overflow: hidden;
 }
@@ -68,7 +68,7 @@
 }
 
 .founder-info {
-    padding: 20px;
+    padding: 15px;
 }
 
 .founder-name {
