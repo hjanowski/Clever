@@ -1,3 +1,5 @@
+// Updated script.js with fixed About navigation
+
 // Elements
 const modal = document.getElementById('demo-modal');
 const openModalBtn = document.getElementById('open-demo-modal');
@@ -13,28 +15,33 @@ const slidesModal = document.getElementById('slides-modal');
 const closeSlidesModal = document.getElementById('close-slides-modal');
 const learnMoreSlides = document.getElementById('learn-more-slides');
 
-// IMPORTANT FIX: Get reference to the About link only after the DOM has loaded
-// This ensures the link is properly found in the DOM before attaching event listeners
-let aboutLink = null;
+// FIXED: Move all About link related code to DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', () => {
-    aboutLink = document.querySelector('a[href="about.html"]');
+    // Find the About link in the navigation
+    const aboutLink = document.querySelector('a[href="about.html"]');
+    console.log('About link found on load:', aboutLink);
     
-    // Add the event listener here to ensure the element exists
+    // Update active navigation links
+    updateActiveNavLinks();
+    
+    // Only attach event if the About link was found
     if (aboutLink) {
-        // Properly attach click event with explicit return true to ensure navigation works
-        aboutLink.onclick = function() {
+        // FIXED: Remove onclick handler and use addEventListener instead
+        // This prevents potential conflicts with other event handlers
+        aboutLink.addEventListener('click', function(e) {
             console.log('About link clicked');
-            // Track analytics without preventing default
+            
+            // Only send analytics if API is available
             if (apiAvailable) {
                 sendNavigationEvent('About Page');
             }
-            // Explicitly return true to allow default link behavior
-            return true;
-        };
+            
+            // IMPORTANT: Do not prevent default behavior to allow normal navigation
+            // Do not return anything here - addEventListener doesn't use return values
+        });
+    } else {
+        console.error('About link not found in the DOM');
     }
-    
-    // The active class setting moved here to avoid conflicts
-    updateActiveNavLinks();
 });
 
 // Variables to track state
