@@ -676,7 +676,7 @@ body {
     border-left: 4px solid #ef4444;
 }
 
-/* Dropdown styles */
+/* Dropdown styles - FIXED FOR PROPER DROPDOWN BEHAVIOR */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -700,6 +700,7 @@ body {
     display: none;
     z-index: 200;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 .dropdown-item {
@@ -708,6 +709,7 @@ body {
     color: #1e293b;
     text-decoration: none;
     transition: background 0.2s;
+    font-weight: 500;
 }
 
 .dropdown-item:hover {
@@ -717,6 +719,20 @@ body {
 
 .dropdown.active .dropdown-menu {
     display: block;
+}
+
+/* Dropdown arrow for visual indicator */
+.dropdown .dropdown-menu:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(45deg);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Slides modal styles */
@@ -772,7 +788,7 @@ body {
     }
     
     .nav-links {
-        display: flex; /* Override the previous none to display dropdown on mobile */
+        display: flex; 
         flex-direction: column;
         position: absolute;
         top: 70px;
@@ -827,6 +843,10 @@ body {
     
     .transform-arrow svg {
         transform: rotate(90deg);
+    }
+
+    .dropdown .dropdown-menu:before {
+        display: none;
     }
 }
 
