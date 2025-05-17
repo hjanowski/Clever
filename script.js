@@ -1,6 +1,6 @@
 // Elements
 const modal = document.getElementById('demo-modal');
-const openModalBtn = document.getElementById('open-demo-modal');
+const openModalBtn = document.getElementById('open-demo-btn');
 const heroDemoBtn = document.getElementById('hero-demo-btn');
 const closeModalBtn = document.querySelector('.close-button');
 const demoForm = document.getElementById('demo-form');
@@ -295,10 +295,10 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Handle About link click
+// Handle About link click - MODIFIED: Just track analytics, don't prevent default behavior
 if (aboutLink) {
-    aboutLink.addEventListener('click', (e) => {
-        // This is already handled via the href, but we can add analytics tracking
+    aboutLink.addEventListener('click', () => {
+        // Only send analytics, no preventDefault() to allow normal navigation
         sendNavigationEvent('About Page');
     });
 }
