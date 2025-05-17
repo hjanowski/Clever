@@ -757,83 +757,79 @@ body {
     pointer-events: none; /* Ensure this doesn't interfere with clicks */
 }
 
-/* Slides modal styles - Updated for horizontal layout */
-.modal-body {
-    color: #1e293b;
-}
-
-/* Update the modal content width for the Clever Slides modal */
+/* Updated Clever Slides Modal Styles */
+/* Modal base styles */
 #slides-modal .modal-content {
     width: 90%;
-    max-width: 700px; /* Increased from 400px to make it more horizontal */
+    max-width: 700px;
     padding: 30px;
 }
 
-/* Reorganize the content layout for a horizontal format */
+/* Reorganized modal body layout */
 #slides-modal .modal-body {
     display: flex;
-    flex-wrap: wrap;
-}
-
-#slides-modal .solution-description-wrapper {
-    flex: 2;
-    padding-right: 30px;
-}
-
-#slides-modal .solution-icon {
-    margin-bottom: 15px;
-}
-
-#slides-modal .solution-features-wrapper {
-    flex: 1;
-    display: flex;
     flex-direction: column;
+    color: #1e293b;
 }
 
-#slides-modal .solution-features {
-    display: flex;
-    flex-direction: column;
+/* Full width description container */
+#slides-modal .modal-full-description {
     margin-bottom: 20px;
-}
-
-#slides-modal .feature {
     width: 100%;
-    margin-bottom: 15px;
 }
 
-#slides-modal .form-submit {
-    max-width: 200px;
-    align-self: flex-start;
-}
-
-.solution-icon {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.solution-description {
+/* Description text styling */
+#slides-modal .solution-description {
     font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 20px;
     color: #475569;
 }
 
-.feature {
+/* Features and button container */
+#slides-modal .features-and-button {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Features list container */
+#slides-modal .solution-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual feature styling */
+#slides-modal .feature {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 30%;
-    margin-bottom: 15px;
 }
 
-.feature-icon {
+#slides-modal .feature-icon {
     color: var(--primary-color);
 }
 
-.feature-text {
+#slides-modal .feature-text {
     font-size: 14px;
     font-weight: 500;
+}
+
+/* Button container to ensure proper positioning */
+#slides-modal .button-container {
+    width: 200px;
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+/* Learn More button styling */
+#slides-modal .form-submit {
+    width: 100%;
+    max-width: 180px;
 }
 
 /* Responsive adjustments */
@@ -883,13 +879,14 @@ body {
     }
     
     /* Adjust horizontal modal to stack vertically on mobile */
-    #slides-modal .modal-body {
+    #slides-modal .features-and-button {
         flex-direction: column;
     }
     
-    #slides-modal .solution-description-wrapper {
-        padding-right: 0;
-        margin-bottom: 20px;
+    #slides-modal .button-container {
+        width: 100%;
+        justify-content: center;
+        margin-top: 20px;
     }
     
     #slides-modal .form-submit {
