@@ -12,6 +12,7 @@ const cleverSlidesLink = document.getElementById('clever-slides-link');
 const slidesModal = document.getElementById('slides-modal');
 const closeSlidesModal = document.getElementById('close-slides-modal');
 const learnMoreSlides = document.getElementById('learn-more-slides');
+const aboutLink = document.querySelector('a[href="about.html"]');
 
 // Variables to track state
 let apiAvailable = false;
@@ -145,6 +146,23 @@ function sendCampaignEvent() {
     });
 }
 
+// Send navigation event
+function sendNavigationEvent(destination) {
+    if (!apiAvailable) return;
+    
+    window.SalesforceInteractions.sendEvent({ 
+        interaction: { 
+            name: "Page Navigation", 
+            eventType: "pageNavigation", 
+            destination: destination
+        } 
+    }).then(res => { 
+        console.log('Navigation event sent successfully');
+    }).catch(err => { 
+        console.error('Navigation event error:', err);
+    });
+}
+
 // Modal functions
 function openModal() {
     modal.style.display = 'flex';
@@ -207,7 +225,7 @@ if (demoForm) {
     });
 }
 
-// Dropdown toggle functionality - FIXED VERSION
+// Dropdown toggle functionality
 if (dropdownToggle) {
     // Toggle dropdown on click instead of hover
     dropdownToggle.addEventListener('click', (e) => {
@@ -277,6 +295,27 @@ window.addEventListener('click', (e) => {
     }
 });
 
+// Handle About link click
+if (aboutLink) {
+    aboutLink.addEventListener('click', (e) => {
+        // This is already handled via the href, but we can add analytics tracking
+        sendNavigationEvent('About Page');
+    });
+}
+
+// Add active class to current navigation item
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (href === currentPage || (currentPage === 'index.html' && href === '')) {
+            link.classList.add('active');
+        }
+    });
+});
+
 // Initialize on page load
 window.addEventListener('load', () => {
     // Check API availability and initialize consent automatically
@@ -291,5 +330,3 @@ window.addEventListener('load', () => {
         }, 1000);
     }
 });
-Improve
-Explain
