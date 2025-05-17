@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Clever AI</title>
+    <title>Clever - AI-Powered Analytics</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="about.css">
     <!-- Load the Salesforce script -->
     <script src="https://cdn.c360a.salesforce.com/beacon/c360a/944f14d6-258e-4ae9-b586-df71b348f6c4/scripts/c360a.min.js"></script>                
     <style>
@@ -17,7 +16,15 @@
     .logo svg {
         stroke: #FFEF00 !important; /* Yellow SVG stroke */
     }
-    </style>
+    
+    .dashboard-logo {
+        color: #6951ff !important; /* Purple logo color in dashboard */
+    }
+    
+    .dashboard-logo svg {
+        stroke: #6951ff !important; /* Purple SVG stroke in dashboard */
+    }
+</style>
 </head>
 <body>
     <div class="decorative-element circle-top-left"></div>
@@ -26,15 +33,13 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <a href="index.html"> <!-- Added logo link to home -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 20v-6M6 20V10M18 20V4"/>
-                    </svg>
-                    clever
-                </a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20v-6M6 20V10M18 20V4"/>
+                </svg>
+                clever
             </div>
             <nav class="nav-links">
-                <a href="index.html" class="nav-link">Product</a>
+                <a href="#" class="nav-link">Product</a>
                 <div class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle">Solutions</a>
                     <div class="dropdown-menu">
@@ -46,7 +51,7 @@
                     </div>
                 </div>
                 <a href="#" class="nav-link">Resources</a>
-                <a href="about.html" class="nav-link">About</a> <!-- Removed active class to be set by JS -->
+                <a href="#" class="nav-link">About</a>
             </nav>
             <div class="nav-buttons">
                 <a href="#" id="sign-in-btn" class="btn btn-secondary">Sign in</a>
@@ -55,65 +60,284 @@
         </div>
     </header>
 
-    <main class="about-main">
-        <div class="about-hero">
-            <h1>Our Team</h1>
-            <p class="about-intro">Meet the innovative minds behind Clever AI - a team of experts dedicated to revolutionizing how we understand and interact with information through advanced visualization technology.</p>
-        </div>
-        
-        <div class="founders-section">
-            <div class="founder-card">
-                <div class="founder-image">
-                    <!-- Replace with actual image: Rami Segal -->
-                    <img src="https://ca.slack-edge.com/E7T5PNK3P-WK0AY7PSQ-85e093fae62f-512" alt="Rami Segal" class="founder-photo">
-                </div>
-                <div class="founder-info">
-                    <h2 class="founder-name">Rami Segal</h2>
-                    <h3 class="founder-title">Co-Founder & CEO</h3>
-                    <p class="founder-bio">With over 15 years of experience in AI and machine learning, Rami leads Clever's vision and strategy. Prior to founding Clever, he served as Head of AI Research at TechVision, where he pioneered breakthrough algorithms in natural language understanding. Rami holds a PhD in Computer Science from MIT and has published extensively on visual representation of language models.</p>
+    <main class="hero">
+        <h1>Any Concept. Any Conversation. Instantly Visualized for Accelerated Learning</h1>
+        <p>Transform any text into instant infographics for deeper understanding and effortless sharing. Integrates with any part of your organization's tech stack.</p>
+        <button id="hero-demo-btn" class="demo-button">Book a demo</button>
+
+        <div class="dashboard-preview">
+            <div class="dashboard-header">
+                <div class="dashboard-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20v-6M6 20V10M18 20V4"/>
+                    </svg>
+                    clever
                 </div>
             </div>
-            
-            <div class="founder-card">
-                <div class="founder-image">
-                    <!-- Replace with actual image: Hadas Yaniv -->
-                    <img src="https://ca.slack-edge.com/E7T5PNK3P-WJ4B1PX2N-9f0fba747e82-512" alt="Hadas Yaniv" class="founder-photo">
+            <div class="dashboard-nav">
+                <a href="#" class="dashboard-nav-item">
+                    <span>+ Ask Clever</span>
+                </a>
+                <a href="#" class="dashboard-nav-item">Notifications</a>
+                <a href="#" class="dashboard-nav-item">Home</a>
+                <a href="#" class="dashboard-nav-item">Settings</a>
+                <a href="#" class="dashboard-nav-item">Insights Library</a>
+            </div>
+            <div class="dashboard-content">
+                <!-- Example 1: Google Doc to Infographic -->
+                <div class="transformation-example">
+                    <div class="source-content">
+                        <div class="column-label">Source</div>
+                        <div class="doc-icon">
+                            <svg viewBox="0 0 24 24" width="40" height="40">
+                                <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#4285F4"/>
+                                <path d="M14 2V8H20L14 2Z" fill="#A1C2FA"/>
+                                <path d="M7 13H17V14H7V13Z" fill="white"/>
+                                <path d="M7 15H17V16H7V15Z" fill="white"/>
+                                <path d="M7 17H14V18H7V17Z" fill="white"/>
+                                <path d="M7 11H17V12H7V11Z" fill="white"/>
+                            </svg>
+                            <span>Business Report.doc</span>
+                        </div>
+                        <div class="doc-preview">
+                            <div class="doc-line"></div>
+                            <div class="doc-line"></div>
+                            <div class="doc-line short"></div>
+                            <div class="doc-line"></div>
+                            <div class="doc-line"></div>
+                            <div class="doc-line short"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="transform-arrow">
+                        <svg viewBox="0 0 24 24" width="30" height="30">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#6951ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="column-label">Infographic</div>
+                        <div class="infographic">
+                            <div class="infographic-header">Business Performance</div>
+                            <div class="infographic-chart">
+                                <div class="bar-chart">
+                                    <div class="bar" style="height: 60%;"><span>Q1</span></div>
+                                    <div class="bar" style="height: 80%;"><span>Q2</span></div>
+                                    <div class="bar" style="height: 40%;"><span>Q3</span></div>
+                                    <div class="bar" style="height: 90%;"><span>Q4</span></div>
+                                </div>
+                            </div>
+                            <div class="infographic-stats">
+                                <div class="stat">
+                                    <div class="stat-value">+27%</div>
+                                    <div class="stat-label">Growth</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">$2.4M</div>
+                                    <div class="stat-label">Revenue</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">89%</div>
+                                    <div class="stat-label">Retention</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="founder-info">
-                    <h2 class="founder-name">Hadas Yaniv</h2>
-                    <h3 class="founder-title">Co-Founder & CTO</h3>
-                    <p class="founder-bio">Hadas is the technical mastermind behind Clever's innovative visualization engine. Her background in computational linguistics and information design allows her to bridge the gap between complex data structures and intuitive visual representations. Before Clever, Hadas developed proprietary visualization systems at Google and led the UX research team at DataViz Innovations. She holds an MSc in Computational Linguistics from Stanford University.</p>
+                
+                <!-- Example 2: Slack to Pie Chart -->
+                <div class="transformation-example">
+                    <div class="source-content">
+                        <div class="column-label">Source</div>
+                        <div class="slack-container">
+                            <div class="slack-sidebar">
+                                <div class="slack-workspace">P</div>
+                                <div class="slack-channel active">#</div>
+                                <div class="slack-channel">D</div>
+                                <div class="slack-channel">@</div>
+                            </div>
+                            <div class="slack-main">
+                                <div class="slack-header">
+                                    <svg viewBox="0 0 24 24" width="20" height="20">
+                                        <path d="M5.042 11.367c0 1.502-1.22 2.723-2.723 2.723S-.404 12.869-.404 11.367 .816 8.644 2.319 8.644s2.723 1.221 2.723 2.723Z" fill="#E01E5A" transform="scale(1.1)"/>
+                                        <path d="M12.637 11.367c0 1.502-1.22 2.723-2.723 2.723s-2.723-1.221-2.723-2.723c0-1.502 1.22-2.723 2.723-2.723h2.723v2.723Z" fill="#E01E5A" transform="scale(1.1)"/>
+                                        <path d="M9.914 3.772c1.502 0 2.723 1.22 2.723 2.723S11.416 9.218 9.914 9.218 7.191 7.998 7.191 6.495V3.772h2.723Z" fill="#36C5F0" transform="scale(1.1)"/>
+                                        <path d="M9.914 18.962c1.502 0 2.723 1.22 2.723 2.723s-1.221 2.723-2.723 2.723-2.723-1.22-2.723-2.723V18.962h2.723Z" fill="#2EB67D" transform="scale(1.1)"/>
+                                        <path d="M2.319 16.239c1.502 0 2.723 1.22 2.723 2.723s-1.221 2.723-2.723 2.723S-.404 20.465-.404 18.962s1.22-2.723 2.723-2.723Z" fill="#ECB22E" transform="scale(1.1)"/>
+                                        <path d="M9.914 16.239c1.502 0 2.723 1.22 2.723 2.723 0 1.502-1.221 2.723-2.723 2.723h-2.723v-2.723c0-1.503 1.22-2.723 2.723-2.723Z" fill="#ECB22E" transform="scale(1.1)"/>
+                                        <path d="M17.509 18.962c0 1.502-1.22 2.723-2.723 2.723s-2.723-1.221-2.723-2.723 1.22-2.723 2.723-2.723h2.723v2.723Z" fill="#2EB67D" transform="scale(1.1)"/>
+                                        <path d="M14.786 11.367c0-1.502 1.22-2.723 2.723-2.723s2.723 1.221 2.723 2.723-1.22 2.723-2.723 2.723h-2.723v-2.723Z" fill="#36C5F0" transform="scale(1.1)"/>
+                                    </svg>
+                                    <span>#product-team</span>
+                                </div>
+                                <div class="slack-messages">
+                                    <div class="slack-message">
+                                        <div class="slack-avatar" style="background-color: #F06050;">S</div>
+                                        <div class="slack-content">
+                                            <div class="slack-text-redacted">
+                                                <div class="redacted-line"></div>
+                                                <div class="redacted-line short"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slack-message">
+                                        <div class="slack-avatar" style="background-color: #6951ff;">M</div>
+                                        <div class="slack-content">
+                                            <div class="slack-text-redacted">
+                                                <div class="redacted-line medium"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slack-message">
+                                        <div class="slack-avatar" style="background-color: #4CAF50;">A</div>
+                                        <div class="slack-content">
+                                            <div class="slack-text-redacted">
+                                                <div class="redacted-line"></div>
+                                                <div class="redacted-line short"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slack-message">
+                                        <div class="slack-avatar" style="background-color: #FF9800;">J</div>
+                                        <div class="slack-content">
+                                            <div class="slack-text-redacted">
+                                                <div class="redacted-line medium"></div>
+                                                <div class="redacted-line short"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transform-arrow">
+                        <svg viewBox="0 0 24 24" width="30" height="30">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#6951ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="column-label">Infographic</div>
+                        <div class="pie-chart-container">
+                            <div class="pie-chart-title">Q2 Feature Priorities</div>
+                            <div class="pie-chart">
+                                <svg viewBox="0 0 100 100" width="150" height="150">
+                                    <!-- Pie segments -->
+                                    <circle cx="50" cy="50" r="45" fill="transparent" stroke="#6951ff" stroke-width="45" stroke-dasharray="70.7 282.8" stroke-dashoffset="0" />
+                                    <circle cx="50" cy="50" r="45" fill="transparent" stroke="#9C8AFF" stroke-width="45" stroke-dasharray="56.6 282.8" stroke-dashoffset="70.7" />
+                                    <circle cx="50" cy="50" r="45" fill="transparent" stroke="#B4A7FF" stroke-width="45" stroke-dasharray="42.4 282.8" stroke-dashoffset="127.3" />
+                                    <circle cx="50" cy="50" r="45" fill="transparent" stroke="#CDC3FF" stroke-width="45" stroke-dasharray="28.3 282.8" stroke-dashoffset="169.7" />
+                                </svg>
+                            </div>
+                            <div class="pie-legend">
+                                <div class="legend-item">
+                                    <div class="color-box" style="background-color: #6951ff;"></div>
+                                    <div>AI Assistant (40%)</div>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="color-box" style="background-color: #9C8AFF;"></div>
+                                    <div>Dashboard (25%)</div>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="color-box" style="background-color: #B4A7FF;"></div>
+                                    <div>Mobile App (20%)</div>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="color-box" style="background-color: #CDC3FF;"></div>
+                                    <div>API (15%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 3: 1984 to Infographic -->
+                <div class="transformation-example">
+                    <div class="source-content">
+                        <div class="column-label">Source</div>
+                        <div class="book-cover">
+                            <div class="book-title">1984</div>
+                            <div class="book-author">George Orwell</div>
+                            <div class="book-image">
+                                <svg viewBox="0 0 100 150" width="100%" height="100%">
+                                    <!-- Book background -->
+                                    <rect width="100" height="150" fill="#232323" />
+                                    
+                                    <!-- "Big Brother" eye symbol - enlarged -->
+                                    <circle cx="50" cy="55" r="25" fill="none" stroke="white" stroke-width="1.5" />
+                                    <path d="M 35 55 L 65 55 M 50 40 L 50 70" stroke="white" stroke-width="1.5" />
+                                    
+                                    <!-- Title and author text positioning adjusted -->
+                                    <text x="50" y="105" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold">1984</text>
+                                    <text x="50" y="125" text-anchor="middle" fill="white" font-family="Arial" font-size="10">GEORGE ORWELL</text>
+                                    
+                                    <!-- Additional design elements -->
+                                    <rect x="20" y="90" width="60" height="1" fill="white" opacity="0.6" />
+                                    <rect x="20" y="135" width="60" height="1" fill="white" opacity="0.6" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transform-arrow">
+                        <svg viewBox="0 0 24 24" width="30" height="30">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#6951ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="column-label">Infographic</div>
+                        <div class="book-infographic">
+                            <div class="infographic-title">1984: Key Themes</div>
+                            <div class="theme-grid">
+                                <div class="theme-item">
+                                    <div class="theme-icon">
+                                        <svg viewBox="0 0 24 24" width="30" height="30">
+                                            <circle cx="12" cy="12" r="10" fill="#6951ff" opacity="0.2" />
+                                            <path d="M12 7C9.24 7 7 9.24 7 12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12C17 9.24 14.76 7 12 7ZM12 15C10.34 15 9 13.66 9 12C9 10.34 10.34 9 12 9C13.66 9 15 10.34 15 12C15 13.66 13.66 15 12 15Z" fill="#6951ff" />
+                                            <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" stroke="#6951ff" fill="none" />
+                                        </svg>
+                                    </div>
+                                    <div class="theme-name">Surveillance</div>
+                                </div>
+                                <div class="theme-item">
+                                    <div class="theme-icon">
+                                        <svg viewBox="0 0 24 24" width="30" height="30">
+                                            <circle cx="12" cy="12" r="10" fill="#6951ff" opacity="0.2" />
+                                            <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#6951ff" />
+                                            <path d="M15 10L10 15" stroke="#6951ff" stroke-width="2" stroke-linecap="round" />
+                                        </svg>
+                                    </div>
+                                    <div class="theme-name">Censorship</div>
+                                </div>
+                                <div class="theme-item">
+                                    <div class="theme-icon">
+                                        <svg viewBox="0 0 24 24" width="30" height="30">
+                                            <circle cx="12" cy="12" r="10" fill="#6951ff" opacity="0.2" />
+                                            <path d="M12 4L4 8V16L12 20L20 16V8L12 4Z" stroke="#6951ff" fill="none" />
+                                            <path d="M12 4V20" stroke="#6951ff" stroke-width="1" />
+                                            <path d="M20 8L12 12L4 8" stroke="#6951ff" stroke-width="1" />
+                                        </svg>
+                                    </div>
+                                    <div class="theme-name">Control</div>
+                                </div>
+                                <div class="theme-item">
+                                    <div class="theme-icon">
+                                        <svg viewBox="0 0 24 24" width="30" height="30">
+                                            <circle cx="12" cy="12" r="10" fill="#6951ff" opacity="0.2" />
+                                            <path d="M19 5V19H5V5H19ZM21 3H3V21H21V3Z" fill="#6951ff" />
+                                            <path d="M14 11H10V7H14V11Z" fill="#6951ff" />
+                                        </svg>
+                                    </div>
+                                    <div class="theme-name">Freedom</div>
+                                </div>
+                            </div>
+                            <div class="key-quote">"Who controls the past controls the future."</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="founder-card">
-                <div class="founder-image">
-                    <!-- Replace with actual image: Alon Haze -->
-                    <img src="https://ca.slack-edge.com/E7T5PNK3P-U02BERC5J5Q-6ecbb3e0c9bc-512" alt="Alon Haze" class="founder-photo">
-                </div>
-                <div class="founder-info">
-                    <h2 class="founder-name">Alon Haze</h2>
-                    <h3 class="founder-title">Co-Founder & CPO</h3>
-                    <p class="founder-bio">As Chief Product Officer, Alon shapes how users experience Clever's technology across platforms. His background in cognitive psychology and human-computer interaction gives him unique insight into how people process visual information. Alon previously led product teams at Adobe, where he helped develop their Creative Cloud visualization tools. He is passionate about making complex information accessible through thoughtful design and holds a dual degree in Psychology and Design from Rhode Island School of Design.</p>
-                </div>
-            </div>
-            
-            <div class="founder-card">
-                <div class="founder-image">
-                    <!-- Replace with actual image: Noa Ziglin -->
-                    <img src="https://ca.slack-edge.com/E7T5PNK3P-U069W2B2AAW-ef436e9c1f8e-512" alt="Noa Ziglin" class="founder-photo">
-                </div>
-                <div class="founder-info">
-                    <h2 class="founder-name">Noa Ziglin</h2>
-                    <h3 class="founder-title">Co-Founder & COO</h3>
-                    <p class="founder-bio">Noa brings strategic business acumen to Clever's operations and growth initiatives. With a background in enterprise SaaS and organizational learning, she understands how visualization technology can transform corporate knowledge management. Before Clever, Noa was VP of Business Development at EdTech pioneer LearningLens and a management consultant at McKinsey, specializing in technology adoption. She holds an MBA from Harvard Business School and remains active in the Women in AI community.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="company-mission">
-            <h2>Our Mission</h2>
-            <p>At Clever, we believe that information becomes knowledge when it's visualized. Our mission is to help people and organizations understand complex concepts faster by transforming raw information into intuitive visual representations. We're committed to building technology that makes learning, decision-making, and information sharing more efficient and engaging across all industries.</p>
         </div>
     </main>
 
@@ -146,7 +370,7 @@
         </div>
     </div>
 
-    <!-- Clever Slides Modal -->
+    <!-- Clever Slides Modal - Fixed Layout -->
     <div id="slides-modal" class="modal">
         <div class="modal-content">
             <button class="close-button" id="close-slides-modal">&times;</button>
