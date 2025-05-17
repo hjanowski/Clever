@@ -207,8 +207,9 @@ if (demoForm) {
     });
 }
 
-// Toggle dropdown
+// Dropdown toggle functionality
 if (dropdownToggle) {
+    // Toggle dropdown on click
     dropdownToggle.addEventListener('click', (e) => {
         e.preventDefault();
         dropdown.classList.toggle('active');
@@ -219,6 +220,16 @@ if (dropdownToggle) {
         if (!dropdown.contains(e.target)) {
             dropdown.classList.remove('active');
         }
+    });
+    
+    // Open dropdown on hover (optional, but common for navigation)
+    dropdown.addEventListener('mouseenter', () => {
+        dropdown.classList.add('active');
+    });
+    
+    // Close dropdown when mouse leaves
+    dropdown.addEventListener('mouseleave', () => {
+        dropdown.classList.remove('active');
     });
 }
 
@@ -268,3 +279,5 @@ window.addEventListener('load', () => {
         }, 1000);
     }
 });
+Improve
+Explain
