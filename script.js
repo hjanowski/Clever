@@ -1,4 +1,4 @@
-// Updated script.js with fixed About navigation and guide-compliant SDK implementation
+// Updated script.js with fixed About navigation
 
 // Elements
 const modal = document.getElementById('demo-modal');
@@ -59,6 +59,19 @@ function showStatus(message, type = 'success') {
     }, 3000);
 }
 
+// Get UTM parameters from URL
+function getUTMParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        campaignName: params.get('utm_campaign') || 'direct_traffic',
+        campaignSource: params.get('utm_source') || 'direct',
+        campaignContent: params.get('utm_content') || 'none',
+        custom1: params.get('utm_term') || 'custom1',
+        custom2: params.get('utm_medium') || 'custom2',
+        custom3: params.get('utm_id') || 3
+    };
+}
+
 // Check if SalesforceInteractions is available
 function checkApi() {
     if (typeof window.SalesforceInteractions === 'undefined') {
@@ -78,25 +91,16 @@ function checkApi() {
     return true;
 }
 
-// Initialize consent automatically - UPDATED with fallback for safety
+// Initialize consent automatically
 function initializeConsent() {
     if (!apiAvailable) return;
     
-    // Use SDK constants if available, otherwise use string values
-    const purpose = (window.SalesforceInteractions && window.SalesforceInteractions.ConsentPurpose) 
-        ? window.SalesforceInteractions.ConsentPurpose.Tracking 
-        : "Tracking";
-    
-    const status = (window.SalesforceInteractions && window.SalesforceInteractions.ConsentStatus)
-        ? window.SalesforceInteractions.ConsentStatus.OptIn
-        : "OptIn";
-    
-    window.SalesforceInteractions.init({
-        consents: [{
-            purpose: purpose,
-            provider: "OneTrust",
-            status: status
-        }]
+    window.SalesforceInteractions.init({ 
+        consents: [{ 
+            provider: "CampaignAttribution", 
+            purpose: "Tracking", 
+            status: "Opt In" 
+        }] 
     }).then(res => { 
         consentInitialized = true;
         console.log('Consent initialized successfully');
@@ -116,13 +120,59 @@ function sendIdentity(firstName, lastName, email) {
                 firstName: firstName, 
                 lastName: lastName, 
                 email: email, 
-                isAnonymous: 0  // 0 = not anonymous (known user)
+                isAnonymous: 0 
             } 
         } 
     }).then(res => {
         console.log('Identity event sent successfully');
     }).catch(err => {
         console.error('Identity event error:', err);
+    });
+}
+
+// Send identity event with company information
+function sendIdentityWithCompany(firstName, lastName, company, email) {
+    if (!apiAvailable) return;
+    
+    window.SalesforceInteractions.sendEvent({ 
+        user: { 
+            attributes: { 
+                eventType: 'identity', 
+                firstName: firstName, 
+                lastName: lastName, 
+                company: company,
+                email: email, 
+                isAnonymous: 0 
+            } 
+        } 
+    }).then(res => {
+        console.log('Identity event with company info sent successfully');
+    }).catch(err => {
+        console.error('Identity event error:', err);
+    });
+}
+
+// Send campaign event with UTM parameters
+function sendCampaignEvent() {
+    if (!apiAvailable) return;
+    
+    const utmParams = getUTMParams();
+    
+    window.SalesforceInteractions.sendEvent({ 
+        interaction: { 
+            name: "Campaigns Events", 
+            eventType: "campaignsEvents", 
+            campaignName: utmParams.campaignName, 
+            campaignSource: utmParams.campaignSource, 
+            campaignContent: utmParams.campaignContent, 
+            custom1: utmParams.custom1, 
+            custom2: utmParams.custom2, 
+            custom3: utmParams.custom3 
+        } 
+    }).then(res => { 
+        console.log('Campaign event sent successfully');
+    }).catch(err => { 
+        console.error('Campaign event error:', err);
     });
 }
 
@@ -182,7 +232,7 @@ if (signInBtn) {
     });
 }
 
-// Handle form submission - UPDATED with combined identity + Request Demo interaction
+// Handle form submission
 if (demoForm) {
     demoForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -192,29 +242,11 @@ if (demoForm) {
         const company = document.getElementById('company').value;
         const email = document.getElementById('email').value;
         
-        // Send combined identity + Request Demo interaction event
-        if (apiAvailable) {
-            window.SalesforceInteractions.sendEvent({
-                user: {
-                    attributes: {
-                        eventType: 'identity',
-                        firstName: firstName,
-                        lastName: lastName,
-                        company: company,
-                        email: email,
-                        isAnonymous: 0  // 0 = not anonymous (known user)
-                    }
-                },
-                interaction: {
-                    name: "Request Demo",
-                    eventType: "requestDemo"
-                }
-            }).then(res => {
-                console.log('Identity + Request Demo event sent successfully');
-            }).catch(err => {
-                console.error('Event error:', err);
-            });
-        }
+        // Send identity event with company information
+        sendIdentityWithCompany(firstName, lastName, company, email);
+        
+        // Send campaign event with UTM parameters
+        sendCampaignEvent();
         
         // Show success message
         showStatus('Demo request submitted successfully!');
