@@ -78,15 +78,24 @@ function checkApi() {
     return true;
 }
 
-// Initialize consent automatically - UPDATED to match guide
+// Initialize consent automatically - UPDATED with fallback for safety
 function initializeConsent() {
     if (!apiAvailable) return;
     
-    SalesforceInteractions.init({
+    // Use SDK constants if available, otherwise use string values
+    const purpose = (window.SalesforceInteractions && window.SalesforceInteractions.ConsentPurpose) 
+        ? window.SalesforceInteractions.ConsentPurpose.Tracking 
+        : "Tracking";
+    
+    const status = (window.SalesforceInteractions && window.SalesforceInteractions.ConsentStatus)
+        ? window.SalesforceInteractions.ConsentStatus.OptIn
+        : "OptIn";
+    
+    window.SalesforceInteractions.init({
         consents: [{
-            purpose: SalesforceInteractions.ConsentPurpose.Tracking,
+            purpose: purpose,
             provider: "OneTrust",
-            status: SalesforceInteractions.ConsentStatus.OptIn
+            status: status
         }]
     }).then(res => { 
         consentInitialized = true;
