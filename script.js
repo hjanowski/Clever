@@ -119,7 +119,7 @@ function sendIdentity(firstName, lastName, email) {
     });
 }
 
-// Send identity event with company information
+// Send identity event with company information and demo request engagement
 function sendIdentityWithCompany(firstName, lastName, company, email) {
     if (!apiAvailable) return;
     
@@ -131,13 +131,17 @@ function sendIdentityWithCompany(firstName, lastName, company, email) {
                 lastName: lastName,
                 company: company,
                 email: email,
-                isAnonymous: 1
+                isAnonymous: 0
             }
+        },
+        interaction: {
+            name: "Request Demo",
+            eventType: "RequestDemo2"
         }
     }).then(res => {
-        console.log('Identity event with company info sent successfully');
+        console.log('Identity event with company info and demo request sent successfully');
     }).catch(err => {
-        console.error('Identity event error:', err);
+        console.error('Identity and demo request event error:', err);
     });
 }
 
