@@ -123,6 +123,7 @@ function sendIdentity(firstName, lastName, email) {
 function sendIdentityWithCompany(firstName, lastName, company, email) {
     if (!apiAvailable) return;
     
+    // First event: Identity
     window.SalesforceInteractions.sendEvent({
         user: {
             attributes: {
@@ -133,15 +134,23 @@ function sendIdentityWithCompany(firstName, lastName, company, email) {
                 email: email,
                 isAnonymous: 0
             }
-        },
+        }
+    }).then(res => {
+        console.log('Identity event sent successfully:', res);
+    }).catch(err => {
+        console.error('Identity event error:', err);
+    });
+    
+    // Second event: Demo Request Engagement
+    window.SalesforceInteractions.sendEvent({
         interaction: {
             name: "Request Demo",
             eventType: "RequestDemo2"
         }
     }).then(res => {
-        console.log('Identity event with company info and demo request sent successfully');
+        console.log('Demo request engagement event sent successfully:', res);
     }).catch(err => {
-        console.error('Identity and demo request event error:', err);
+        console.error('Demo request engagement event error:', err);
     });
 }
 
