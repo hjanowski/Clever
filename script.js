@@ -82,12 +82,14 @@ function checkApi() {
 function initializeConsent() {
     if (!apiAvailable) return;
     
-    window.SalesforceInteractions.init({ 
-        consents: [{ 
-            provider: "CampaignAttribution", 
-            purpose: "Tracking", 
-            status: "Opt In" 
-        }] 
+    window.SalesforceInteractions.init({
+        consents: [
+            {
+                purpose: window.SalesforceInteractions.ConsentPurpose.Tracking,
+                provider: "OneTrust",
+                status: window.SalesforceInteractions.ConsentStatus.OptIn
+            }
+        ]
     }).then(res => { 
         consentInitialized = true;
         console.log('Consent initialized successfully');
