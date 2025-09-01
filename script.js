@@ -1,4 +1,4 @@
-// Updated script.js with UTM campaign code removed
+// Updated script.js with new identity event format
 
 // Elements
 const modal = document.getElementById('demo-modal');
@@ -102,16 +102,16 @@ function initializeConsent() {
 function sendIdentity(firstName, lastName, email) {
     if (!apiAvailable) return;
     
-    window.SalesforceInteractions.sendEvent({ 
-        user: { 
-            attributes: { 
-                eventType: 'identity', 
-                firstName: firstName, 
-                lastName: lastName, 
-                email: email, 
-                isAnonymous: 0 
-            } 
-        } 
+    window.SalesforceInteractions.sendEvent({
+        user: {
+            attributes: {
+                eventType: 'identity',
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                isAnonymous: 1
+            }
+        }
     }).then(res => {
         console.log('Identity event sent successfully');
     }).catch(err => {
@@ -123,17 +123,17 @@ function sendIdentity(firstName, lastName, email) {
 function sendIdentityWithCompany(firstName, lastName, company, email) {
     if (!apiAvailable) return;
     
-    window.SalesforceInteractions.sendEvent({ 
-        user: { 
-            attributes: { 
-                eventType: 'identity', 
-                firstName: firstName, 
-                lastName: lastName, 
+    window.SalesforceInteractions.sendEvent({
+        user: {
+            attributes: {
+                eventType: 'identity',
+                firstName: firstName,
+                lastName: lastName,
                 company: company,
-                email: email, 
-                isAnonymous: 0 
-            } 
-        } 
+                email: email,
+                isAnonymous: 1
+            }
+        }
     }).then(res => {
         console.log('Identity event with company info sent successfully');
     }).catch(err => {
@@ -197,7 +197,7 @@ if (signInBtn) {
     });
 }
 
-// Handle form submission - UTM campaign code removed
+// Handle form submission
 if (demoForm) {
     demoForm.addEventListener('submit', (e) => {
         e.preventDefault();
