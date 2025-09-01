@@ -1,4 +1,4 @@
-// Updated script.js with fixed About navigation
+// Updated script.js with UTM campaign code removed
 
 // Elements
 const modal = document.getElementById('demo-modal');
@@ -57,19 +57,6 @@ function showStatus(message, type = 'success') {
     setTimeout(() => {
         statusNotification.style.display = 'none';
     }, 3000);
-}
-
-// Get UTM parameters from URL
-function getUTMParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        campaignName: params.get('utm_campaign') || 'direct_traffic',
-        campaignSource: params.get('utm_source') || 'direct',
-        campaignContent: params.get('utm_content') || 'none',
-        custom1: params.get('utm_term') || 'custom1',
-        custom2: params.get('utm_medium') || 'custom2',
-        custom3: params.get('utm_id') || 3
-    };
 }
 
 // Check if SalesforceInteractions is available
@@ -152,30 +139,6 @@ function sendIdentityWithCompany(firstName, lastName, company, email) {
     });
 }
 
-// Send campaign event with UTM parameters
-function sendCampaignEvent() {
-    if (!apiAvailable) return;
-    
-    const utmParams = getUTMParams();
-    
-    window.SalesforceInteractions.sendEvent({ 
-        interaction: { 
-            name: "Campaigns Events", 
-            eventType: "campaignsEvents", 
-            campaignName: utmParams.campaignName, 
-            campaignSource: utmParams.campaignSource, 
-            campaignContent: utmParams.campaignContent, 
-            custom1: utmParams.custom1, 
-            custom2: utmParams.custom2, 
-            custom3: utmParams.custom3 
-        } 
-    }).then(res => { 
-        console.log('Campaign event sent successfully');
-    }).catch(err => { 
-        console.error('Campaign event error:', err);
-    });
-}
-
 // Send navigation event
 function sendNavigationEvent(destination) {
     if (!apiAvailable) return;
@@ -232,7 +195,7 @@ if (signInBtn) {
     });
 }
 
-// Handle form submission
+// Handle form submission - UTM campaign code removed
 if (demoForm) {
     demoForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -244,9 +207,6 @@ if (demoForm) {
         
         // Send identity event with company information
         sendIdentityWithCompany(firstName, lastName, company, email);
-        
-        // Send campaign event with UTM parameters
-        sendCampaignEvent();
         
         // Show success message
         showStatus('Demo request submitted successfully!');
